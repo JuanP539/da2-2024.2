@@ -8,6 +8,11 @@ namespace MoviesApi.Controllers
     [ApiController]
     public class MoviesController : Controller
     {
+        //[HttpGet]
+        //public IActionResult GetMovies() 
+        //{
+        //    return Ok("Shrek, Avatar");
+        //}
         //Attribute para indicarle a ASP.NET Core que este método de acción 
         //corresponde a una solicitud HTTP con verbo Get
         [HttpGet]
