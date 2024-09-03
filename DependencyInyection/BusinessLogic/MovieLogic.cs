@@ -17,16 +17,18 @@ namespace BusinessLogic
         }
 
         public Movie GetMovieByTitle(string title)
-        {
-            return new Movie()
-            {
-                Title = title,
-                Genres = new List<string>()
-            };
+        {//Metodo MUY mejorable (viola Clean Code por todos lados)
+            string[] movies = { "Shrek", "Harry Potter", "Avengers: Endgame", "Avatar" };
+            List<Movie> listMovies = (from movie in movies
+                      where movie.ToLower().Equals(title.ToLower())
+                      select movie).Select(s => new Movie {Title = title }).ToList();
+            if (listMovies.Count == 0) return null;
+            return listMovies[0];
         }
 
-        public IEnumerable<Movie> GetMoviesByPostix(string postfix)
+        public List<Movie> GetMoviesByPostix(string postfix)
         {
+
             return new List<Movie>()
             {
                 new Movie()
@@ -37,5 +39,4 @@ namespace BusinessLogic
             };
         }
     }
-}
 }

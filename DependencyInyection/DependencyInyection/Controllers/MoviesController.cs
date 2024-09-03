@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLogic;
+using Domain;
+using IBusinessLogic;
+using Microsoft.AspNetCore.Mvc;
 using Models.In;
 using Models.Out;
 
@@ -8,24 +11,30 @@ namespace DependencyInyection.Controllers
     [ApiController]
     public class MoviesController : Controller
     {
-        [HttpGet]
-        public IActionResult GetMovieByPostfix([FromQuery] string? endsWith) 
+        private readonly IMovieLogic _movieLogic;
+
+        public MoviesController(IMovieLogic movieLogic)
         {
-            string[] movies = { "Shrek", "Harry Potter", "Avengers: Endgame", "Avatar" };
+            _movieLogic = movieLogic;
+        }
+
+        [HttpGet]
+        public IActionResult GetMovieByPostfix([FromQuery] string? endsWith)
+        {//Metodo mejorable
+            List<Movie> movies = _movieLogic.GetMoviesByPostix(endsWith);
+
             if (endsWith is null)
             {
                 return Ok(movies);
             }
-            return Ok(movies.Where(x => x.EndsWith(endsWith)).ToList());
+            return Ok(movies);
         }
 
         [HttpGet("{title}")]
-        public IActionResult GetMovieByTitle([FromRoute] string title) 
-        {
-            string[] movies = { "Shrek", "Harry Potter", "Avengers: Endgame", "Avatar" };
-            return Ok(from movie in movies
-                      where movie.ToLower().Equals(title.ToLower())
-                      select movie);
+        public IActionResult GetMovieByTitle([FromRoute] string title)
+        {//Metodo mejorable
+            Movie movie = _movieLogic.GetMovieByTitle(title);
+            return Ok(movie);
         }
 
         [HttpPost]

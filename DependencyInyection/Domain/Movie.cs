@@ -10,6 +10,6 @@ namespace Domain
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
-        public IEnumerable<string> Genres { get; set; }
+        public List<string> Genres { get; set; }
     }
 }
