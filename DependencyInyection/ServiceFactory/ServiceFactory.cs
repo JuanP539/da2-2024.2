@@ -13,7 +13,7 @@ namespace APIServiceFactory
     {
         public static void AddServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IMovieLogic, MovieLogic>();
+            serviceCollection.AddScoped<IMovieLogic, MovieLogic>();
         }
     }
 }
