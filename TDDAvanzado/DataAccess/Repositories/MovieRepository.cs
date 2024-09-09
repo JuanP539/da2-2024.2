@@ -20,7 +20,14 @@ namespace DataAccess.Repositories
 
         public Movie GetMovieByTitle(string title)
         {
-            return _moviesContext.Movies.First(m => m.Title == title);
+            try
+            {
+                return _moviesContext.Movies.First(m => m.Title == title);
+            }
+            catch (InvalidOperationException) 
+            {
+                throw new InvalidOperationException("Bad");
+            }
         }
 
     }

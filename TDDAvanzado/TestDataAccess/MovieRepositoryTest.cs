@@ -92,11 +92,38 @@ namespace TestDataAccess
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void GetMovieByTitleFail() 
+        public void GetMovieByTitleFakeFail() 
         {
             LoadContext(TestData());
 
             Movie result = _movieRepository.GetMovieByTitle(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void GetMovieByTitleMockFail() 
+        {
+            Mock<MovieContext> moviesContext = new Mock<MovieContext>();
+            moviesContext.Setup(ctx => ctx.Movies).Throws(new InvalidOperationException());
+            IMovieRepository movieRepository = new MovieRepository(moviesContext.Object);
+
+            Movie result = movieRepository.GetMovieByTitle(null);
+        }
+
+        [TestMethod]
+        public void GetMovieByTitleFailWithMessage()
+        {
+            LoadContext(TestData());
+            try
+            {
+                Movie result = _movieRepository.GetMovieByTitle(null);
+
+                Assert.Fail("Expected InvalidOperationException but no exception was thrown.");
+            }
+            catch (InvalidOperationException ex)
+            {
+                StringAssert.Contains(ex.Message, "Bad");
+            }
         }
     }
 }
