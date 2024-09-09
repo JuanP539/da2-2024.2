@@ -89,5 +89,15 @@ namespace TestDataAccess
             //Assert
             Assert.AreEqual(expectedMovie, result);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void GetMovieByTitleFail() 
+        {
+            Movie expectedMovie = new Movie { Title = "Shrek" };
+            LoadContext(TestData());
+
+            Movie result = _movieRepository.GetMovieByTitle(null);
+        }
     }
 }
