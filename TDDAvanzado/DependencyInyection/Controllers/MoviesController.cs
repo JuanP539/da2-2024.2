@@ -34,7 +34,7 @@ namespace TDDAvanzado.Controllers
         public IActionResult GetMovieByTitle([FromRoute] string title)
         {
             var movie = _movieLogic.GetMovieByTitle(title);
-            var response = new RetrieveMovieResponse(movie);
+            var response = new RetrieveMovieResponse() { Title = movie.Title, Genres = movie.Genres};
             return Ok(response);
         }
 
