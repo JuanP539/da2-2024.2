@@ -94,7 +94,6 @@ namespace TestDataAccess
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetMovieByTitleFail() 
         {
-            Movie expectedMovie = new Movie { Title = "Shrek" };
             LoadContext(TestData());
 
             Movie result = _movieRepository.GetMovieByTitle(null);
