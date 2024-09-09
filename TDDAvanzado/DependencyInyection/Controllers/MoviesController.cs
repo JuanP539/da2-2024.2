@@ -33,8 +33,9 @@ namespace TDDAvanzado.Controllers
         [HttpGet("{title}")]
         public IActionResult GetMovieByTitle([FromRoute] string title)
         {
-            RetrieveMovieResponse movie = new RetrieveMovieResponse(_movieLogic.GetMovieByTitle(title));
-            return Ok(movie);
+            var movie = _movieLogic.GetMovieByTitle(title);
+            var response = new RetrieveMovieResponse(movie);
+            return Ok(response);
         }
 
         [HttpPost]
