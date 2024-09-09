@@ -1,9 +1,12 @@
 ﻿using DataAccess.Context;
 using DataAccess.Repositories;
 using Domain;
+using IDataAccess;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Moq.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,13 +61,32 @@ namespace TestDataAccess
         }
 
         [TestMethod]
-        public void GetMovieByTitleOkTest()
+        public void GetMovieByTitleOkFakeTest()
         {
             // Arrange
-            Movie expectedMovie = new Movie {Title = "Shrek", Genres = new List<string>(){"Comedy", "Fantasy", "Adventure" } };
+            Movie expectedMovie = new Movie {Title = "Shrek" };
             LoadContext(TestData());
 
+            //Act
             Movie result = _movieRepository.GetMovieByTitle("Shrek");
+
+            //Assert
+            Assert.AreEqual(expectedMovie, result);
+        }
+
+        [TestMethod]
+        public void GetMovieByTitleMockOkTest() 
+        {
+            //Arrange
+            Movie expectedMovie = new Movie { Title = "Shrek" };
+            Mock<MovieContext> moviesContext = new Mock<MovieContext>();
+            moviesContext.Setup(ctx => ctx.Movies).ReturnsDbSet(TestData());
+            IMovieRepository movieRepository = new MovieRepository(moviesContext.Object);
+
+            //Act
+            Movie result = movieRepository.GetMovieByTitle("Shrek");
+
+            //Assert
             Assert.AreEqual(expectedMovie, result);
         }
     }

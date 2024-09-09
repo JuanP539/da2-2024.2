@@ -10,7 +10,7 @@ namespace DataAccess.Context
 {
     public class MovieContext : DbContext
     {
-        public DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
 
         public MovieContext() { }
 

@@ -33,8 +33,7 @@ namespace TestAPI
             Mock<IMovieLogic> movieLogicMock = new Mock<IMovieLogic>(MockBehavior.Strict);
             movieLogicMock.Setup(logic => logic.GetMovieByTitle(It.IsAny<string>())).Returns(_movie);
             _moviesController = new MoviesController(movieLogicMock.Object);
-            OkObjectResult expected = new OkObjectResult(_retrieveMovieResponse);
-            RetrieveMovieResponse expectedObject = expected.Value as RetrieveMovieResponse;
+            RetrieveMovieResponse expectedResult = _retrieveMovieResponse;
 
             //Act
             OkObjectResult result = _moviesController.GetMovieByTitle("") as OkObjectResult;
@@ -42,7 +41,7 @@ namespace TestAPI
 
             //Assert
             movieLogicMock.VerifyAll();
-            Assert.AreEqual(expectedObject, objectResult);
+            Assert.AreEqual(expectedResult, objectResult);
         }
     }
 }
