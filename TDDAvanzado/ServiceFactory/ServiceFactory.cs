@@ -1,7 +1,9 @@
 ﻿using BusinessLogic;
+using DataAccess.Context;
 using DataAccess.Repositories;
 using IBusinessLogic;
 using IDataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,11 @@ namespace APIServiceFactory
         {
             serviceCollection.AddScoped<IMovieLogic, MovieLogic>();
             serviceCollection.AddScoped<IMovieRepository, MovieRepository>();
+        }
+
+        public static void AddConnectionString(this IServiceCollection serviceCollection, string connectionString)
+        {
+            serviceCollection.AddDbContext<DbContext, MovieContext>(o => o.UseSqlServer(connectionString));
         }
     }
 }

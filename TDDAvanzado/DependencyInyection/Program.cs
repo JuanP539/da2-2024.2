@@ -10,6 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 ServiceFactory.AddServices(builder.Services);
+builder.Services.AddConnectionString(builder.Configuration.GetConnectionString("MovieRecomenderDB"));
 
 var app = builder.Build();
 
