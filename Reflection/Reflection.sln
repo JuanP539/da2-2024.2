@@ -25,9 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBusinessLogic", "TestBu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataAccess", "TestDataAccess\TestDataAccess.csproj", "{311E3739-0D01-4104-AD96-1F4494E3C096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IImporter", "IImporter\IImporter.csproj", "{F28CCD92-05B8-4B2E-9339-58C77B995C4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IImporter", "IImporter\IImporter.csproj", "{F28CCD92-05B8-4B2E-9339-58C77B995C4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVImporters", "CSVImporters\CSVImporters.csproj", "{F8C1A4D5-5B40-419F-838F-502625AEDDF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVImporters", "CSVImporters\CSVImporters.csproj", "{F8C1A4D5-5B40-419F-838F-502625AEDDF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONImporters", "JSONImporters\JSONImporters.csproj", "{C9ECB8B9-41CD-4EFA-8A31-E34BA661058F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{F8C1A4D5-5B40-419F-838F-502625AEDDF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8C1A4D5-5B40-419F-838F-502625AEDDF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8C1A4D5-5B40-419F-838F-502625AEDDF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9ECB8B9-41CD-4EFA-8A31-E34BA661058F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9ECB8B9-41CD-4EFA-8A31-E34BA661058F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9ECB8B9-41CD-4EFA-8A31-E34BA661058F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9ECB8B9-41CD-4EFA-8A31-E34BA661058F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

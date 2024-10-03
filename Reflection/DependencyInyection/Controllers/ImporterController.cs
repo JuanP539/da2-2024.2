@@ -20,12 +20,13 @@ namespace WebApi.Controllers
             var availableImporters = _importerLogic.GetAllImporters();
             return Ok(availableImporters.Select(i => i.GetName()).ToList());
         }
-
+        /*
         [HttpGet]
         public IActionResult Index2()
         {
             var availableImporters = _importerLogic.GetAllImporters();
             return Ok(availableImporters.Select(i => i.ImportMovie()).ToList());
         }
+        */
     }
 }
