@@ -4,6 +4,7 @@ using IBusinessLogic;
 using Microsoft.AspNetCore.Mvc;
 using Models.In;
 using Models.Out;
+using WebApi.Filters;
 
 namespace WebApi.Controllers
 {
@@ -19,6 +20,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [AuthenticationFilter]
         public IActionResult GetMovieByPostfix([FromQuery] string? endsWith)
         {
             List<Movie> movies = _movieLogic.GetMoviesByPostix(endsWith);

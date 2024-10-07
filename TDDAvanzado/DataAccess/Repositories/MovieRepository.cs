@@ -24,11 +24,26 @@ namespace DataAccess.Repositories
             {
                 return _moviesContext.Movies.First(m => m.Title == title);
             }
-            catch (InvalidOperationException) 
+            catch (InvalidOperationException)
             {
                 throw new InvalidOperationException("Bad");
             }
         }
 
+        public List<Movie> GetMoviesWithPag(string title)
+        {
+            int pageNumber = 1;
+            int pageSize = 10;
+            List<Movie> lm = new List<Movie>();
+            try
+            {
+                var ret = _moviesContext.Movies.OrderBy(p => p.Id).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList(); ;
+                return ret;
+            }
+            catch (InvalidOperationException) 
+            {
+                throw new InvalidOperationException("Bad");
+            }
+        }
     }
 }

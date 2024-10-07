@@ -14,11 +14,11 @@ namespace BusinessLogic
         public List<ImporterInterface> GetAllImporters()
         {
             var importersPath = "./Importers"; // Se puede usar appsettings.json
-            string[] filePaths = Directory.GetFiles(importersPath);
+            string[] filePaths = Directory.GetFiles(importersPath); // Obtiene los archivos en la ruta especificada. En este caso, las DLL de los importadores.
             // ej: filePaths = ["./Importers/JsonImporter.dll", "./Importers/CSVImporter.dll"]
-            List<ImporterInterface> availableImporters = new List<ImporterInterface>();
+            List<ImporterInterface> availableImporters = new List<ImporterInterface>();// Lista que almacenará las instancias de los importadores disponibles.
 
-            foreach (string file in filePaths)
+            foreach (string file in filePaths) // Itera sobre todos los archivos encontrados en la ruta de importadores.
             {
                 if (FileIsDll(file))
                 {
@@ -28,11 +28,12 @@ namespace BusinessLogic
                     Assembly myAssembly = Assembly.LoadFile(dllFile.FullName);
 
                     // ej de GetTypes -> [JSONImporter, CSVImporter]
-                    foreach (Type type in myAssembly.GetTypes())
+                    foreach (Type type in myAssembly.GetTypes()) // Obtiene todos los tipos (clases) definidos en el ensamblado.
                     {
-                        if (ImplementsRequiredInterface(type))
+                        if (ImplementsRequiredInterface(type)) // Verifica si el tipo implementa la interfaz requerida (ImporterInterface).
                         {
-                            ImporterInterface instance = (ImporterInterface)Activator.CreateInstance(type);
+                            // Crea una instancia del tipo que implementa la interfaz ImporterInterface.
+                            ImporterInterface instance = (ImporterInterface)Activator.CreateInstance(type); 
                             availableImporters.Add(instance);
                         }
                     }

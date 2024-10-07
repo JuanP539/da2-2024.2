@@ -10,5 +10,6 @@ namespace IDataAccess
     public interface IMovieRepository
     {
         Movie GetMovieByTitle(string title);
+        List<Movie> GetMoviesWithPag(string title);
     }
 }
