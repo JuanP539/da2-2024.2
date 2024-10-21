@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
     templateUrl: './movie-item.component.html',
     styleUrl: './movie-item.component.css',
   })
-  export class TodoListItem {
+  export class MovieItem {
     /* Component behavior is defined in here */
   }
