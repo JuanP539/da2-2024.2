@@ -1,0 +1,6 @@
+<div><button (click)="getDogFact()">Get Random Dog Fact</button></div>
+<div>
+@for (item of dogFactService.facts; track $index) {
+    <li>{{item}}</li>
+}
+</div>

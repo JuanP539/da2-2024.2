@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
     styleUrl: './movie-item.component.css',
   })
   export class MovieItem {
-    /* Component behavior is defined in here */
+    
   }
