@@ -4,6 +4,6 @@ import { DogfactComponent } from './components/dogfact/dogfact.component';
 import { exampleGuard } from './guards/example.guard';
 
 export const routes: Routes = [
-    { path: 'movie', component: MovieItem, canActivate: [exampleGuard]},
+    { path: 'movies', component: MovieItem, canActivate: [exampleGuard]},
     { path: 'randomFact', component: DogfactComponent }
 ];

@@ -15,6 +15,7 @@ export class DogFactService {
   this.http.get("https://dog-api.kinduff.com/api/facts").subscribe(value => {
     this.lastFact = (value as Dogfact).facts[0];
     this.facts.push(this.lastFact);
+    localStorage.setItem("facts", JSON.stringify(this.facts));
   } )
   }
 }
